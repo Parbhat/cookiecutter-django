@@ -71,11 +71,11 @@ DJANGO_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
-    'foundation_formtags',  # Form layouts
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'rest_framework',
+    "foundation_formtags",  # Form layouts
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "rest_framework",
 {%- if cookiecutter.use_celery == 'y' %}
     "django_celery_beat",
 {%- endif %}
@@ -294,17 +294,13 @@ SOCIALACCOUNT_ADAPTER = "{{cookiecutter.project_slug}}.users.adapters.SocialAcco
 # django-compressor
 # ------------------------------------------------------------------------------
 # https://django-compressor.readthedocs.io/en/latest/quickstart/#installation
-INSTALLED_APPS += ["compressor", ]
-STATICFILES_FINDERS += ["compressor.finders.CompressorFinder", ]
+INSTALLED_APPS += ["compressor"]
+STATICFILES_FINDERS += ["compressor.finders.CompressorFinder"]
 
 # django-libsass
-COMPRESS_PRECOMPILERS = [
-    ('text/x-scss', 'django_libsass.SassCompiler'),
-]
+COMPRESS_PRECOMPILERS = [("text/x-scss", "django_libsass.SassCompiler")]
 
-COMPRESS_CACHEABLE_PRECOMPILERS = (
-    ('text/x-scss', 'django_libsass.SassCompiler'),
-)
+COMPRESS_CACHEABLE_PRECOMPILERS = (("text/x-scss", "django_libsass.SassCompiler"),)
 
 # Your stuff...
 # ------------------------------------------------------------------------------
