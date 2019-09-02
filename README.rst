@@ -49,7 +49,7 @@ For more information about `Cookiecutter Django`_
 Features
 ---------
 
-* For Django 2.0
+* For Django 2.2
 * Works with Python 3.6
 * Renders Django projects with 100% starting test coverage
 * `Zurb Foundation`_ 6 with an option to customize using SASS variables (100% SASS).
@@ -62,11 +62,11 @@ Features
 * Comes with custom user model ready to go
 * Optional custom static build using Gulp and livereload
 * Send emails via Anymail_ (using Mailgun_ by default, but switchable)
-* Media storage using Amazon S3
-* Docker support using docker-compose_ for development and production (using Caddy_ with LetsEncrypt_ support)
+* Media storage using Amazon S3 or Google Cloud Storage
+* Docker support using docker-compose_ for development and production (using Traefik_ with LetsEncrypt_ support)
 * Procfile_ for deploying to Heroku
 * Instructions for deploying to PythonAnywhere_
-* Run tests with unittest or py.test
+* Run tests with unittest or pytest
 * Customizable PostgreSQL version
 
 
@@ -75,7 +75,7 @@ Optional Integrations
 
 *These features can be enabled during initial project setup.*
 
-* Serve static files from Amazon S3 or Whitenoise_
+* Serve static files from Amazon S3, Google Cloud Storage or Whitenoise_
 * Configuration for Celery_ and Flower_ (the latter in Docker setup only)
 * Integration with MailHog_ for local email testing
 * Integration with Sentry_ for error logging
@@ -97,15 +97,15 @@ Optional Integrations
 .. _Sentry: https://sentry.io/welcome/
 .. _docker-compose: https://github.com/docker/compose
 .. _PythonAnywhere: https://www.pythonanywhere.com/
-.. _Caddy: https://caddyserver.com/
+.. _Traefik: https://traefik.io/
 .. _LetsEncrypt: https://letsencrypt.org/
 
 Constraints
 -----------
 
 * Only maintained 3rd party libraries are used.
-* Uses PostgreSQL everywhere (9.2+)
-* Environment variables for configuration (This won't work with Apache/mod_wsgi except on AWS ELB).
+* Uses PostgreSQL everywhere (9.4 - 11.3)
+* Environment variables for configuration (This won't work with Apache/mod_wsgi).
 
 Support this Project!
 ----------------------
@@ -171,7 +171,7 @@ Answer the prompts with your own desired options_. For example::
     project_slug [reddit_clone]: reddit
     author_name [Daniel Roy Greenfeld]: Daniel Greenfeld
     email [you@example.com]: pydanny@gmail.com
-    description [A short description of the project.]: A reddit clone.
+    description [Behold My Awesome Project!]: A reddit clone.
     domain_name [example.com]: myreddit.com
     version [0.1.0]: 0.0.1
     timezone [UTC]: America/Los_Angeles
@@ -184,18 +184,21 @@ Answer the prompts with your own desired options_. For example::
     use_docker [n]: n
     use_heroku [n]: y
     Select postgresql_version:
-    1 - 10.3
-    2 - 10.2
-    3 - 10.1
-    4 - 9.6
-    5 - 9.5
-    6 - 9.4
-    7 - 9.3
-    Choose from 1, 2, 3, 4 [1]: 1
+    1 - 11.3
+    2 - 10.8
+    3 - 9.6
+    4 - 9.5
+    5 - 9.4
+    Choose from 1, 2, 3, 4, 5 [1]: 1
     Select js_task_runner:
     1 - None
     2 - Gulp
     Choose from 1, 2 [1]: 1
+    Select cloud_provider:
+    1 - AWS
+    2 - GCP
+    3 - None
+    Choose from 1, 2, 3 [1]: 1
     Select open_source_license:
     1 - MIT
     2 - BSD

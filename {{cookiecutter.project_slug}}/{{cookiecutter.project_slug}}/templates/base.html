@@ -19,7 +19,11 @@
     {% block css %}
     {% compress css %}
     <link rel="stylesheet" type="text/x-scss" href="{% static 'sass/app.scss' %}">
+    {% endraw %}{% if cookiecutter.js_task_runner == "Gulp" %}{% raw %}
+    <link href="{% static 'css/project.min.css' %}" rel="stylesheet">
+    {% endraw %}{% else %}{% raw %}
     <link href="{% static 'css/project.css' %}" rel="stylesheet">
+    {% endraw %}{% endif %}{% raw %}
     {% endcompress %}
     {% endblock %}
 
@@ -72,7 +76,6 @@
       <div class="medium-6 medium-offset-3 columns">
         {% if messages %}
           {% for message in messages %}
-
             <div class="callout {% if message.tags %}{{ message.tags }}{% endif %}" data-closable>
             <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
               <span aria-hidden="true">&times;</span>
