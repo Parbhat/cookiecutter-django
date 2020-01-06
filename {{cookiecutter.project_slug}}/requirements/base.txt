@@ -21,8 +21,9 @@ django==2.2.9  # pyup: < 3.0  # https://www.djangoproject.com/
 django-environ==0.4.5  # https://github.com/joke2k/django-environ
 django-model-utils==4.0.0  # https://github.com/jazzband/django-model-utils
 django-allauth==0.41.0  # https://github.com/pennersr/django-allauth
-django-crispy-forms==1.8.1  # https://github.com/django-crispy-forms/django-crispy-forms
+django-foundation-formtags==0.1.0
 django-compressor==2.3  # https://github.com/django-compressor/django-compressor
+django-libsass==0.7
 django-redis==4.11.0  # https://github.com/niwinz/django-redis
 
 # Django REST Framework
