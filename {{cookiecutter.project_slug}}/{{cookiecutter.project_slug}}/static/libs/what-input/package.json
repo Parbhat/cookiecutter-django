@@ -1,0 +1,87 @@
+{
+  "name": "what-input",
+  "version": "5.2.6",
+  "description": "A global utility for tracking the current input method (mouse, keyboard or touch).",
+  "main": "dist/what-input.js",
+  "repository": {
+    "url": "git+https://github.com/ten1seven/what-input.git",
+    "type": "git"
+  },
+  "keywords": [
+    "accessibility",
+    "a11y",
+    "input",
+    "javascript"
+  ],
+  "author": {
+    "name": "Jeremy Fields",
+    "email": "jeremy.fields@viget.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ten1seven/what-input/issues"
+  },
+  "scripts": {
+    "start": "gulp",
+    "deploy": "gulp deploy"
+  },
+  "homepage": "https://github.com/ten1seven/what-input",
+  "devDependencies": {
+    "autoprefixer": "^9.6.1",
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.3.2",
+    "babel-preset-env": "^1.6.0",
+    "browser-sync": "^2.26.7",
+    "css-mqpacker": "^7.0.0",
+    "del": "^5.1.0",
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssnano": "^2.1.3",
+    "gulp-gh-pages": "^0.5.4",
+    "gulp-header": "^2.0.9",
+    "gulp-load-plugins": "^2.0.1",
+    "gulp-notify": "^3.2.0",
+    "gulp-plumber": "^1.2.1",
+    "gulp-postcss": "^8.0.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-sass-glob": "^1.1.0",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-standard": "^14.0.0",
+    "gulp-uglify": "^3.0.2",
+    "stylelint-config-prettier": "^6.0.0",
+    "stylelint-config-standard": "^19.0.0",
+    "webpack-stream": "3.2.0"
+  },
+  "gitHead": "05fe7c758822d96b89fc969ee8e7130da35e7c5f",
+  "_id": "what-input@5.2.6",
+  "_npmVersion": "6.4.1",
+  "_nodeVersion": "10.15.0",
+  "_npmUser": {
+    "name": "ten1seven",
+    "email": "jeremy@ten1seven.com"
+  },
+  "dist": {
+    "integrity": "sha512-a0BcI5YR7xp87vSzGcbN0IszJKpUQuTmrZaTSQBl7TLDIdKj6rDhluQ7b/7lYGG81gWDvkySsEvwv4BW5an9kg==",
+    "shasum": "ac6f003bf8d3592a0031dea7a03565469b00020b",
+    "tarball": "https://registry.npmjs.org/what-input/-/what-input-5.2.6.tgz",
+    "fileCount": 22,
+    "unpackedSize": 404096,
+    "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.4\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJdlST6CRA9TVsSAnZWagAATtAP/150hj3PYd4t9Gma9JkP\ndci/1rYiT/5VstF2QJ6B2m1pWN4z93vAZ01icmBCKs1HtDtYo3K2QWQfTM4P\nTjoAppV4QCk3LD0NfrHG+lSZpf8OF4Tm8z9S2+wWZxxjznBjHJOT6xEQt4zz\nzbLYleJOb/ycfSxkbDBctqnRb0fcIpU9aR9tXmwPe2RKc22FcTca6QssIERg\nZ1i6OJ5Xninrg8yvjjgx2o77AZfmz4lkM8mCbyZqL7m1nePgjOWu1xpep6fA\n5N36HIh6eZMuWGjdoCIVRTNEo0gSsHSby31qiBBPIbQ2HRDtoTg57twZNCSW\nIL9ctRq6kVcot6ydzbSirmGSh6drwV0HqNdKsc/33wpw9jQ3uxUNWm3JueQL\nTNLYNPUZU9+fbnSoho1wH/OlSXtus4FEkAY6x0WRKJkI9mSmFLxQWdy+tqCr\ndgklHuwIrl5gvxd3NrnX53yAPV/m1Dl5mXustNEqXWOFnyqwn1txR7P+PHin\nwXSIAT6XH4Fm5+PdlP23GdXitJWZ5hum2ic2VEF0IsNo6hQEXfZGJBeDnXqw\nqYDmVHZe/5C2ZzVL7ptX05rb/AkMXP0zcj3cFOZWLPn+Nk4cSpFLbFTVWFzk\n7GsLe62c+YnYPzlNYRjZOfVHKSV8rvKIK0B+fMKC0oOY9A97RsP4V62/sMkf\nVNrD\r\n=pDWQ\r\n-----END PGP SIGNATURE-----\r\n"
+  },
+  "maintainers": [
+    {
+      "name": "ten1seven",
+      "email": "jeremy@ten1seven.com"
+    }
+  ],
+  "directories": {},
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/what-input_5.2.6_1570055417874_0.3830770508084673"
+  },
+  "_hasShrinkwrap": false,
+  "_shasum": "ac6f003bf8d3592a0031dea7a03565469b00020b",
+  "_resolved": "https://registry.npmjs.org/what-input/-/what-input-5.2.6.tgz",
+  "_from": "what-input@>=5.1.2 <6.0.0"
+}
