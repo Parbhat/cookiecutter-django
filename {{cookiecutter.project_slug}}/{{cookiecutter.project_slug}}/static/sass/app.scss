@@ -1,8 +1,7 @@
 @charset 'utf-8';
 
 @import 'settings';
-@import 'foundation';
-@import 'motion-ui';
+@import 'libs/foundation-sites/scss/foundation';
 
 // Global styles
 @include foundation-global-styles;
@@ -59,6 +58,31 @@
 @include foundation-visibility-classes;
 // @include foundation-prototype-classes;
 
-// Motion UI
-@include motion-ui-transitions;
-@include motion-ui-animations;
+
+/********* Project Scss **************/
+
+
+.top-bar
+{
+  li.menu-text{color: $white;}
+  a {color: $white;}
+  a:hover {color: $white;}
+  li a:hover{background-color: get-color(secondary);}
+}
+
+/******** Colouring for messages from Django messages framework **********/
+
+.callout.error
+{
+  background-color: #fce6e2;
+}
+
+.callout.info
+{
+  background-color: #ebebeb;
+}
+
+.callout.debug
+{
+  background-color: #d6e9c6;;
+}
