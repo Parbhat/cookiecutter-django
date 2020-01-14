@@ -1,142 +1,193 @@
 {% raw %}{% load static i18n compress %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>{% block title %}{% endraw %}{{ cookiecutter.project_name }}{% raw %}{% endblock title %}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>{% block title %}{% endraw %}{{ cookiecutter.project_name }}{% raw %}{% endblock title %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
 
-    <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}">
+  <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}">
 
-    {% block css %}
-    {% compress css %}
-    <link rel="stylesheet" type="text/x-scss" href="{% static 'sass/app.scss' %}">
-    {% endraw %}{% if cookiecutter.js_task_runner == "Gulp" %}{% raw %}
-    <link href="{% static 'css/project.min.css' %}" rel="stylesheet">
-    {% endraw %}{% else %}{% raw %}
-    <link href="{% static 'css/project.css' %}" rel="stylesheet">
-    {% endraw %}{% endif %}{% raw %}
-    {% endcompress %}
-    {% endblock %}
+  {% block css %}
+  {% compress css %}
+  <link rel="stylesheet" type="text/x-scss" href="{% static 'sass/app.scss' %}">
+  {% endraw %}{% if cookiecutter.js_task_runner == "Gulp" %}{% raw %}
+  <link href="{% static 'css/project.min.css' %}" rel="stylesheet">
+  {% endraw %}{% else %}{% raw %}
+  <link href="{% static 'css/project.css' %}" rel="stylesheet">
+  {% endraw %}{% endif %}{% raw %}
+  {% endcompress %}
+  {% endblock %}
 
-  </head>
+</head>
 
-  <body>
+<body>
 
-    <div class="title-bar" data-responsive-toggle="menu" data-hide-for="medium">
-      <button class="menu-icon" type="button" data-toggle></button>
-      <div class="title-bar-title">Menu</div>
+  <div class="title-bar" data-responsive-toggle="menu" data-hide-for="medium">
+    <button class="menu-icon" type="button" data-toggle></button>
+    <div class="title-bar-title">Menu</div>
+  </div>
+
+  <div class="top-bar" id="menu">
+    <div class="top-bar-left hide-for-small-only">
+      <ul class="dropdown menu">
+        <li class="menu-text">{% endraw %}{{ cookiecutter.project_name }}{% raw %}</li>
+      </ul>
     </div>
 
-    <div class="top-bar" id="menu">
-      <div class="top-bar-left hide-for-small-only">
-        <ul class="dropdown menu">
-          <li class="menu-text">{% endraw %}{{ cookiecutter.project_name }}{% raw %}</li>
-        </ul>
-      </div>
-
-      <div class="top-bar-right">
-        <ul class="vertical medium-horizontal menu">
-          <li> <a href="{% url 'home' %}">Home</a></li>
-          <li><a href="{% url 'about' %}">About</a></li>
-          {% if request.user.is_authenticated %}
-            <li>
-              {# URL provided by django-allauth/account/urls.py #}
-              <a href="{% url 'users:detail' request.user.username  %}">{% trans "My Profile" %}</a>
-            </li>
-            <li>
-              {# URL provided by django-allauth/account/urls.py #}
-              <a href="{% url 'account_logout' %}">{% trans "Sign out" %}</a>
-            </li>
-            {% else %}
-            <li>
-              {# URL provided by django-allauth/account/urls.py #}
-              <a id="sign-up-link" href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a>
-            </li>
-            <li>
-              {# URL provided by django-allauth/account/urls.py #}
-              <a id="log-in-link" href="{% url 'account_login' %}">{% trans "Sign In" %}</a>
-            </li>
-            {% endif %}
-        </ul>
-      </div>
-
-    </div>
-
-    <div class="row">
-
-      <div class="medium-6 medium-offset-3 columns">
-        {% if messages %}
-          {% for message in messages %}
-            <div class="callout {% if message.tags %}{{ message.tags }}{% endif %}" data-closable>
-            <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
-              <span aria-hidden="true">&times;</span>
-            </button>
-            {{ message }}</div>
-          {% endfor %}
+    <div class="top-bar-right">
+      <ul class="vertical medium-horizontal menu">
+        <li> <a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
+        {% if request.user.is_authenticated %}
+        <li>
+          {# URL provided by django-allauth/account/urls.py #}
+          <a href="{% url 'users:detail' request.user.username  %}">{% trans "My Profile" %}</a>
+        </li>
+        <li>
+          {# URL provided by django-allauth/account/urls.py #}
+          <a href="{% url 'account_logout' %}">{% trans "Sign out" %}</a>
+        </li>
+        {% else %}
+        <li>
+          {# URL provided by django-allauth/account/urls.py #}
+          <a id="sign-up-link" href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a>
+        </li>
+        <li>
+          {# URL provided by django-allauth/account/urls.py #}
+          <a id="log-in-link" href="{% url 'account_login' %}">{% trans "Sign In" %}</a>
+        </li>
         {% endif %}
-      </div>
+      </ul>
     </div>
 
-    {% block content %}
-    <div class="grid-y medium-grid-frame">
-      <div class="cell shrink header medium-cell-block-container">
-        <h1>XY grid example with Grid Frame (Foundation 6.6.1!!!)</h1>
-      </div>
-      <div class="cell medium-auto medium-cell-block-container">
-        <div class="grid-x grid-padding-x">
-          <div class="cell medium-4 medium-cell-block-y">
-            <h2>Independent scrolling sidebar</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lacus odio, accumsan id ullamcorper eget, varius nec erat. Nulla facilisi. Donec dui felis, euismod nec finibus vitae, dapibus quis arcu. Maecenas tempor et ipsum quis venenatis. Ut posuere sed augue sit amet efficitur. Sed imperdiet, justo id tempus rhoncus, est est viverra turpis, non vulputate magna lectus et nisl. Pellentesque ultrices porttitor vehicula. Ut aliquet efficitur ligula, a consectetur felis. Proin tristique ut augue nec luctus. Curabitur a sapien pretium, auctor elit a, efficitur erat. Donec tincidunt dui vel velit bibendum euismod. Cras vitae nibh dui. Aliquam erat volutpat. Etiam sit amet arcu a erat efficitur facilisis. Ut viverra dapibus turpis, et ornare justo. Integer in dui cursus, dignissim tortor a, hendrerit risus.</p>
+  </div>
 
-            <p>Suspendisse pulvinar, massa iaculis feugiat lobortis, dolor sapien vestibulum nulla, vel cursus tellus leo in lorem. Aliquam eu placerat urna. Suspendisse sed viverra orci, ut mattis neque. Fusce non ultrices nisi. In sagittis varius mollis. Quisque dolor quam, consectetur eu lacinia ac, ullamcorper vel arcu. Nullam mattis imperdiet nulla sed ornare. Praesent tristique, est id eleifend vestibulum, neque nibh condimentum ex, nec lobortis purus justo a libero. Phasellus id ex ac nunc hendrerit hendrerit. Nullam urna ipsum, rutrum at fringilla vel, venenatis non purus. Maecenas egestas ex vitae venenatis molestie. Ut et odio egestas, accumsan neque et, viverra nisl. Sed faucibus nec nulla sed imperdiet. Fusce quis sem ac urna semper tempor a id elit. Nulla fringilla vitae sapien a vehicula.</p>
+  <div class="row">
 
-          </div>
-          <div class="cell medium-8 medium-cell-block-y">
-            <h2>Independent scrolling body</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lacus odio, accumsan id ullamcorper eget, varius nec erat. Nulla facilisi. Donec dui felis, euismod nec finibus vitae, dapibus quis arcu. Maecenas tempor et ipsum quis venenatis. Ut posuere sed augue sit amet efficitur. Sed imperdiet, justo id tempus rhoncus, est est viverra turpis, non vulputate magna lectus et nisl. Pellentesque ultrices porttitor vehicula. Ut aliquet efficitur ligula, a consectetur felis. Proin tristique ut augue nec luctus. Curabitur a sapien pretium, auctor elit a, efficitur erat. Donec tincidunt dui vel velit bibendum euismod. Cras vitae nibh dui. Aliquam erat volutpat. Etiam sit amet arcu a erat efficitur facilisis. Ut viverra dapibus turpis, et ornare justo. Integer in dui cursus, dignissim tortor a, hendrerit risus.</p>
-            <p>Suspendisse pulvinar, massa iaculis feugiat lobortis, dolor sapien vestibulum nulla, vel cursus tellus leo in lorem. Aliquam eu placerat urna. Suspendisse sed viverra orci, ut mattis neque. Fusce non ultrices nisi. In sagittis varius mollis. Quisque dolor quam, consectetur eu lacinia ac, ullamcorper vel arcu. Nullam mattis imperdiet nulla sed ornare. Praesent tristique, est id eleifend vestibulum, neque nibh condimentum ex, nec lobortis purus justo a libero. Phasellus id ex ac nunc hendrerit hendrerit. Nullam urna ipsum, rutrum at fringilla vel, venenatis non purus. Maecenas egestas ex vitae venenatis molestie. Ut et odio egestas, accumsan neque et, viverra nisl. Sed faucibus nec nulla sed imperdiet. Fusce quis sem ac urna semper tempor a id elit. Nulla fringilla vitae sapien a vehicula.</p>
-            <p>Nullam vestibulum lorem nec lectus egestas, nec ullamcorper diam maximus. Maecenas condimentum, nibh at blandit semper, ex erat tempus magna, id maximus neque velit accumsan nibh. Aenean dignissim lorem eu nisl laoreet vestibulum. Vivamus efficitur et augue vitae tincidunt. Etiam et magna felis. Integer mattis, nisi aliquet scelerisque blandit, ex mi sodales ante, eget accumsan quam magna et ligula. Curabitur id tristique leo. Proin rutrum mi vitae enim rhoncus, at cursus neque eleifend. Integer ultrices volutpat tellus ac porta. Fusce sollicitudin venenatis lacinia. Fusce ante lorem, gravida semper varius non, pharetra non erat. Sed dapibus arcu turpis, ac sollicitudin nibh lacinia vel. Nullam at enim porta, luctus metus sit amet, rutrum odio. Cras tempor enim vel pellentesque sollicitudin. Maecenas ullamcorper, sem non accumsan volutpat, neque tortor pulvinar orci, ut ultrices ligula lorem ut risus.</p>
-            <p>Aliquam facilisis, nibh eget posuere suscipit, arcu sapien iaculis odio, in molestie dolor lectus vitae sem. Cras id nunc mollis mi rutrum dapibus. Quisque rutrum a augue at scelerisque. Praesent faucibus ac enim vitae gravida. Sed et sodales elit. Duis magna lectus, interdum sit amet metus a, sagittis varius magna. Proin nibh lectus, egestas a luctus ut, dapibus et enim. Curabitur fringilla ipsum vitae nunc imperdiet consectetur eget non neque. Suspendisse ultricies odio quis lorem vulputate, ac vulputate turpis feugiat. Maecenas posuere rhoncus orci, in ornare velit suscipit tempor. Curabitur pretium nisl id lorem placerat consequat. In quis quam eros. Nam mattis elit eu quam sagittis, in varius erat tempor.</p>
-            <p>Fusce felis magna, pellentesque eget mollis a, rutrum id eros. Curabitur auctor varius arcu a consequat. Phasellus quis pulvinar enim, eu ultricies justo. Pellentesque risus libero, dapibus at erat ultricies, gravida varius erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla tempus, justo ut laoreet mollis, nunc tellus convallis urna, vel pretium dui velit eget ligula. Aliquam semper sed nulla a molestie. Maecenas at egestas massa, vitae aliquam mi. Fusce nec sem egestas, pretium lacus non, tincidunt sapien. Sed tristique odio at ultricies vulputate. Integer et convallis augue, eu aliquam enim. Mauris ut faucibus diam. Donec vulputate nunc sed congue accumsan. Etiam lobortis nisi quis lacinia pharetra.</p>
-          </div>
+    <div class="medium-6 medium-offset-3 columns">
+      {% if messages %}
+      {% for message in messages %}
+      <div class="callout {% if message.tags %}{{ message.tags }}{% endif %}" data-closable>
+        <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+          <span aria-hidden="true">&times;</span>
+        </button>
+        {{ message }}</div>
+      {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+
+  {% block content %}
+  <div class="grid-y medium-grid-frame">
+    <div class="cell shrink header medium-cell-block-container">
+      <h1>XY grid example with Grid Frame (Foundation 6.5.3!!!)</h1>
+    </div>
+    <div class="cell medium-auto medium-cell-block-container">
+      <div class="grid-x grid-padding-x">
+        <div class="cell medium-4 medium-cell-block-y">
+          <h2>Independent scrolling sidebar</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lacus odio, accumsan id ullamcorper eget,
+            varius nec erat. Nulla facilisi. Donec dui felis, euismod nec finibus vitae, dapibus quis arcu. Maecenas
+            tempor et ipsum quis venenatis. Ut posuere sed augue sit amet efficitur. Sed imperdiet, justo id tempus
+            rhoncus, est est viverra turpis, non vulputate magna lectus et nisl. Pellentesque ultrices porttitor
+            vehicula. Ut aliquet efficitur ligula, a consectetur felis. Proin tristique ut augue nec luctus. Curabitur a
+            sapien pretium, auctor elit a, efficitur erat. Donec tincidunt dui vel velit bibendum euismod. Cras vitae
+            nibh dui. Aliquam erat volutpat. Etiam sit amet arcu a erat efficitur facilisis. Ut viverra dapibus turpis,
+            et ornare justo. Integer in dui cursus, dignissim tortor a, hendrerit risus.</p>
+
+          <p>Suspendisse pulvinar, massa iaculis feugiat lobortis, dolor sapien vestibulum nulla, vel cursus tellus leo
+            in lorem. Aliquam eu placerat urna. Suspendisse sed viverra orci, ut mattis neque. Fusce non ultrices nisi.
+            In sagittis varius mollis. Quisque dolor quam, consectetur eu lacinia ac, ullamcorper vel arcu. Nullam
+            mattis imperdiet nulla sed ornare. Praesent tristique, est id eleifend vestibulum, neque nibh condimentum
+            ex, nec lobortis purus justo a libero. Phasellus id ex ac nunc hendrerit hendrerit. Nullam urna ipsum,
+            rutrum at fringilla vel, venenatis non purus. Maecenas egestas ex vitae venenatis molestie. Ut et odio
+            egestas, accumsan neque et, viverra nisl. Sed faucibus nec nulla sed imperdiet. Fusce quis sem ac urna
+            semper tempor a id elit. Nulla fringilla vitae sapien a vehicula.</p>
+
+        </div>
+        <div class="cell medium-8 medium-cell-block-y">
+          <h2>Independent scrolling body</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lacus odio, accumsan id ullamcorper eget,
+            varius nec erat. Nulla facilisi. Donec dui felis, euismod nec finibus vitae, dapibus quis arcu. Maecenas
+            tempor et ipsum quis venenatis. Ut posuere sed augue sit amet efficitur. Sed imperdiet, justo id tempus
+            rhoncus, est est viverra turpis, non vulputate magna lectus et nisl. Pellentesque ultrices porttitor
+            vehicula. Ut aliquet efficitur ligula, a consectetur felis. Proin tristique ut augue nec luctus. Curabitur a
+            sapien pretium, auctor elit a, efficitur erat. Donec tincidunt dui vel velit bibendum euismod. Cras vitae
+            nibh dui. Aliquam erat volutpat. Etiam sit amet arcu a erat efficitur facilisis. Ut viverra dapibus turpis,
+            et ornare justo. Integer in dui cursus, dignissim tortor a, hendrerit risus.</p>
+          <p>Suspendisse pulvinar, massa iaculis feugiat lobortis, dolor sapien vestibulum nulla, vel cursus tellus leo
+            in lorem. Aliquam eu placerat urna. Suspendisse sed viverra orci, ut mattis neque. Fusce non ultrices nisi.
+            In sagittis varius mollis. Quisque dolor quam, consectetur eu lacinia ac, ullamcorper vel arcu. Nullam
+            mattis imperdiet nulla sed ornare. Praesent tristique, est id eleifend vestibulum, neque nibh condimentum
+            ex, nec lobortis purus justo a libero. Phasellus id ex ac nunc hendrerit hendrerit. Nullam urna ipsum,
+            rutrum at fringilla vel, venenatis non purus. Maecenas egestas ex vitae venenatis molestie. Ut et odio
+            egestas, accumsan neque et, viverra nisl. Sed faucibus nec nulla sed imperdiet. Fusce quis sem ac urna
+            semper tempor a id elit. Nulla fringilla vitae sapien a vehicula.</p>
+          <p>Nullam vestibulum lorem nec lectus egestas, nec ullamcorper diam maximus. Maecenas condimentum, nibh at
+            blandit semper, ex erat tempus magna, id maximus neque velit accumsan nibh. Aenean dignissim lorem eu nisl
+            laoreet vestibulum. Vivamus efficitur et augue vitae tincidunt. Etiam et magna felis. Integer mattis, nisi
+            aliquet scelerisque blandit, ex mi sodales ante, eget accumsan quam magna et ligula. Curabitur id tristique
+            leo. Proin rutrum mi vitae enim rhoncus, at cursus neque eleifend. Integer ultrices volutpat tellus ac
+            porta. Fusce sollicitudin venenatis lacinia. Fusce ante lorem, gravida semper varius non, pharetra non erat.
+            Sed dapibus arcu turpis, ac sollicitudin nibh lacinia vel. Nullam at enim porta, luctus metus sit amet,
+            rutrum odio. Cras tempor enim vel pellentesque sollicitudin. Maecenas ullamcorper, sem non accumsan
+            volutpat, neque tortor pulvinar orci, ut ultrices ligula lorem ut risus.</p>
+          <p>Aliquam facilisis, nibh eget posuere suscipit, arcu sapien iaculis odio, in molestie dolor lectus vitae
+            sem. Cras id nunc mollis mi rutrum dapibus. Quisque rutrum a augue at scelerisque. Praesent faucibus ac enim
+            vitae gravida. Sed et sodales elit. Duis magna lectus, interdum sit amet metus a, sagittis varius magna.
+            Proin nibh lectus, egestas a luctus ut, dapibus et enim. Curabitur fringilla ipsum vitae nunc imperdiet
+            consectetur eget non neque. Suspendisse ultricies odio quis lorem vulputate, ac vulputate turpis feugiat.
+            Maecenas posuere rhoncus orci, in ornare velit suscipit tempor. Curabitur pretium nisl id lorem placerat
+            consequat. In quis quam eros. Nam mattis elit eu quam sagittis, in varius erat tempor.</p>
+          <p>Fusce felis magna, pellentesque eget mollis a, rutrum id eros. Curabitur auctor varius arcu a consequat.
+            Phasellus quis pulvinar enim, eu ultricies justo. Pellentesque risus libero, dapibus at erat ultricies,
+            gravida varius erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+            Nulla tempus, justo ut laoreet mollis, nunc tellus convallis urna, vel pretium dui velit eget ligula.
+            Aliquam semper sed nulla a molestie. Maecenas at egestas massa, vitae aliquam mi. Fusce nec sem egestas,
+            pretium lacus non, tincidunt sapien. Sed tristique odio at ultricies vulputate. Integer et convallis augue,
+            eu aliquam enim. Mauris ut faucibus diam. Donec vulputate nunc sed congue accumsan. Etiam lobortis nisi quis
+            lacinia pharetra.</p>
         </div>
       </div>
-      <div class="cell shrink footer">
-        <h3>Here's my footer</h3>
-      </div>
     </div>
-    {% endblock content %}
+    <div class="cell shrink footer">
+      <h3>Here's my footer</h3>
+    </div>
+  </div>
+  {% endblock content %}
 
-    {% block modal %}{% endblock modal %}
+  {% block modal %}{% endblock modal %}
 
-    <!-- Le javascript
+  <!-- Le javascript
     ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    {% block javascript %}
-      <!-- Required by Foundation 6.6.1 -->
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-      <script src="{% static 'libs/what-input/what-input.min.js' %}"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.6.1/js/foundation.min.js"></script>
+  <!-- Placed at the end of the document so the pages load faster -->
+  {% block javascript %}
+  <!-- Required by Foundation 6.5.3 -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script src="{% static 'libs/what-input/what-input.min.js' %}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.5.3/js/foundation.min.js"></script>
 
-      <!-- place project specific Javascript in this file -->
-      {% compress js %}
-      <script src="{% static 'js/project.js' %}"></script>
-      {% endcompress %}
+  <!-- place project specific Javascript in this file -->
+  {% compress js %}
+  <script src="{% static 'js/project.js' %}"></script>
+  {% endcompress %}
 
-      <!-- Your stuff: Third-party javascript libraries go here -->
+  <!-- Your stuff: Third-party javascript libraries go here -->
 
-      <script>
-        $(document).foundation();
-      </script>
-    {% endblock javascript %}
-  </body>
+  <script>
+    $(document).foundation();
+  </script>
+  {% endblock javascript %}
+</body>
+
 </html>{% endraw %}

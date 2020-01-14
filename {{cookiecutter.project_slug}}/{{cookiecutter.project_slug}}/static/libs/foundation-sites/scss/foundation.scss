@@ -1,11 +1,11 @@
 /**
  * Foundation for Sites by ZURB
- * Version 6.6.1
+ * Version 6.5.3
  * foundation.zurb.com
  * Licensed under MIT Open Source
  */
 
-// --- Dependencies ---
+// Dependencies
 @import 'vendor/normalize';
 @import '../_vendor/sassy-lists/stylesheets/helpers/missing-dependencies';
 @import '../_vendor/sassy-lists/stylesheets/helpers/true';
@@ -79,15 +79,10 @@
 
 @mixin foundation-everything(
   $flex: true,
-  $prototype: false,
-  $xy-grid: $xy-grid
+  $prototype: false
 ) {
   @if $flex {
     $global-flexbox: true !global;
-  }
-
-  @if $xy-grid {
-    $xy-grid: true !global;
   }
 
   // Global styles
